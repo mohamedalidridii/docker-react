@@ -8,3 +8,14 @@ before_install:
 script:
   - docker run -e CI=true medali/docker-react npm run test
 
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-north-1"
+  app: "MyDockerApp"
+  env: "MyDockerApp-env"
+  bucket_name: "elasticbeanstalk-eu-north-1-586794465001"
+  bucket_path: "MyDockerApp"
+  on:
+    branch: main
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
